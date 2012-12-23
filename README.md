@@ -26,13 +26,17 @@ Or install it yourself as:
     #=require jquery.validate
     #=require jquery.fileupload
     #=require jquery.pnotify
+    #=require jquery.fancybox
     #=require bootstrap
     #=require underscore
     #=require sammy
 
+    @import compass
+    @import susy
     @import jquery.ui
     @import jquery.mobile
     @import jquery.pnotify
+    @import jquery.fancybox
     @import bootstrap
     @import bootstrap.responsive
 
