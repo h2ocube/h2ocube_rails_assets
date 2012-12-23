@@ -1,3 +1,5 @@
+#= require jquery
+
 # Smart Time Ago v0.1.1
 
 # Copyright 2012, Terry Tai, Pragmatic.ly

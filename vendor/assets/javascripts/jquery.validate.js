@@ -1,3 +1,5 @@
+//= require jquery
+
 /**
  * jQuery Validation Plugin 1.10.0
  *

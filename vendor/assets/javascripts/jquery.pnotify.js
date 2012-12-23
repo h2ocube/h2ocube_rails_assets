@@ -1,3 +1,5 @@
+//= require jquery
+
 /*
  * jQuery Pines Notify (pnotify) Plugin 1.2.0
  *

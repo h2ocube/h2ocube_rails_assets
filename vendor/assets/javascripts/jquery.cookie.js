@@ -1,3 +1,5 @@
+//= require jquery
+
 /*!
  * jQuery Cookie Plugin v1.3
  * https://github.com/carhartl/jquery-cookie

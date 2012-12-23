@@ -1,3 +1,5 @@
+//= require jquery
+
 /*!
  * jQuery UI Widget @VERSION
  * http://jqueryui.com

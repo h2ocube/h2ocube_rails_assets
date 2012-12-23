@@ -1,3 +1,5 @@
+//= require jquery
+
 // name: sammy
 // version: 0.7.2
 
