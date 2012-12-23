@@ -1,4 +1,4 @@
-/*=require jquery.ui.widget */
+//=require jquery.ui.widget
 /*
  * jQuery File Upload Plugin 5.19.4
  * https://github.com/blueimp/jQuery-File-Upload
