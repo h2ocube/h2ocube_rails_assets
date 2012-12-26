@@ -27,6 +27,7 @@ Or install it yourself as:
     #=require jquery.fileupload
     #=require jquery.pnotify
     #=require jquery.fancybox
+    #=require jquery.lazyload
     #=require bootstrap
     #=require underscore
     #=require sammy
