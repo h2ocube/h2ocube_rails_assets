@@ -31,6 +31,7 @@ Or install it yourself as:
     #=require bootstrap
     #=require underscore
     #=require sammy
+    #=require modernizr
 
     @import compass
     @import susy
