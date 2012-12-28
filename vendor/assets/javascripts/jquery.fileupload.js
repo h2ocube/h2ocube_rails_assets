@@ -1,4 +1,5 @@
 //=require jquery.ui/jquery.ui.widget
+//=require jquery.iframe-transport
 
 /*
  * jQuery File Upload Plugin 5.19.4
