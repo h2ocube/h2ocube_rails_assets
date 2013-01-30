@@ -32,6 +32,7 @@ Or install it yourself as:
     #=require underscore
     #=require sammy
     #=require modernizr
+    #=require lazyload
 
     @import compass
     @import susy
