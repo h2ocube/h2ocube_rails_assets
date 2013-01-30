@@ -33,6 +33,7 @@ Or install it yourself as:
     #=require sammy
     #=require modernizr
     #=require lazyload
+    #=require zepto
 
     @import compass
     @import susy
