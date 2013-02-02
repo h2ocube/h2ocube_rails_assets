@@ -1,4 +1,4 @@
-['slim', 'sass-rails', 'susy', 'coffee-rails', 'v8', 'uglifier', 'quiet_assets'].each{ |g| require g }
+['slim', 'susy', 'coffee-rails', 'v8', 'uglifier', 'quiet_assets'].each{ |g| require g }
 
 module H2ocubeRailsAssets
   module Rails
