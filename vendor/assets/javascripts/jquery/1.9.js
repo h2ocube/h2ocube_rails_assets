@@ -1313,8 +1313,7 @@ jQuery.support = (function() {
 
 	// Setup
 	div.setAttribute( "className", "t" );
-	div.innerHTML = "  
-a";
+	div.innerHTML = "a";
 
 	// Support tests won't run in some limited or non-browser environments
 	all = div.getElementsByTagName("*");
