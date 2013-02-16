@@ -36,13 +36,13 @@ Or install it yourself as:
     #=require zepto
 
     @import compass
-    @import susy
     @import jquery.ui
     @import jquery.mobile
     @import jquery.pnotify
     @import jquery.fancybox
     @import bootstrap
     @import bootstrap.responsive
+    @import normalize
 
 ## Contributing
 
