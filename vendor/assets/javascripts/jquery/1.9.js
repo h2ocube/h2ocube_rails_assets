@@ -1473,9 +1473,7 @@ jQuery.support = (function() {
 		// determining if an element has been hidden directly using
 		// display:none (it is still safe to use offsets if a parent element is
 		// hidden; don safety goggles and see bug #4512 for more information).
-		div.innerHTML = "
-t
-";
+		div.innerHTML = "t";
 		tds = div.getElementsByTagName("td");
 		tds[ 0 ].style.cssText = "padding:0;margin:0;border:0;display:none";
 		isSupported = ( tds[ 0 ].offsetHeight === 0 );
@@ -1523,8 +1521,7 @@ t
 			// Support: IE6
 			// Check if elements with layout shrink-wrap their children
 			div.style.display = "block";
-			div.innerHTML = "
-";
+			div.innerHTML = "";
 			div.firstChild.style.width = "5px";
 			support.shrinkWrapBlocks = ( div.offsetWidth !== 3 );
 
@@ -4048,8 +4045,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	// Check if getElementsByClassName can be trusted
 	support.getByClassName = assert(function( div ) {
 		// Opera can't find a second classname (in 9.6)
-		div.innerHTML = "
-";
+		div.innerHTML = "";
 		if ( !div.getElementsByClassName || !div.getElementsByClassName("e").length ) {
 			return false;
 		}
@@ -4064,8 +4060,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 	support.getByName = assert(function( div ) {
 		// Inject content
 		div.id = expando + 0;
-		div.innerHTML = "
-";
+		div.innerHTML = "";
 		docElem.insertBefore( div, docElem.firstChild );
 
 		// Test
