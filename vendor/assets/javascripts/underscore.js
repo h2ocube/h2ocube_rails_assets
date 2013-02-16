@@ -1029,10 +1029,10 @@
   // List of HTML entities for escaping.
   var entityMap = {
     escape: {
-      '&': '&',
-      '<': '<',
-      '>': '>',
-      '"': '"',
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
       "'": '&#x27;',
       '/': '&#x2F;'
     }
@@ -1223,4 +1223,4 @@
 
   });
 
-}).call(this); 
+}).call(this);
