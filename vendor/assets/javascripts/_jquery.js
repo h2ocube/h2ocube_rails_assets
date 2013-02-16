@@ -1,1 +1,1 @@
-//= require jquery/1.8
+//= require jquery/1.9
