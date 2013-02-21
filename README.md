@@ -34,6 +34,7 @@ Or install it yourself as:
     #=require modernizr
     #=require lazyload
     #=require zepto
+    #=require highcharts
 
     @import compass
     @import jquery.ui
