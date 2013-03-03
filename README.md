@@ -34,6 +34,7 @@ Or install it yourself as:
     #=require modernizr
     #=require lazyload
     #=require zepto
+    #=require zepto.all
     #=require highcharts
 
     @import compass
