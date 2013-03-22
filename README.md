@@ -36,6 +36,7 @@ Or install it yourself as:
     #=require zepto
     #=require zepto.all
     #=require highcharts
+    #=require jasny-bootstrap
 
     @import compass
     @import jquery.ui
@@ -45,6 +46,7 @@ Or install it yourself as:
     @import bootstrap
     @import bootstrap.responsive
     @import normalize
+    @import jasny-bootstrap
 
 ## Contributing
 
