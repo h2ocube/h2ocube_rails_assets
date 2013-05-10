@@ -34,15 +34,19 @@ Or install it yourself as:
     #=require modernizr
     #=require lazyload
     #=require zepto
+    #=require zepto.all
+    #=require highcharts
+    #=require jasny-bootstrap
 
     @import compass
-    @import susy
     @import jquery.ui
     @import jquery.mobile
     @import jquery.pnotify
     @import jquery.fancybox
     @import bootstrap
     @import bootstrap.responsive
+    @import normalize
+    @import jasny-bootstrap
 
 ## Contributing
 

@@ -1,2 +1,2 @@
 //=require jquery
-//=require_tree ./jquery.ui
+//=require _jquery.ui
