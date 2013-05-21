@@ -16,5 +16,8 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
   
-  ['slim', 'sass-rails', 'compass-rails', 'coffee-rails', 'therubyracer', 'uglifier', 'quiet_assets'].each{ |g| gem.add_dependency g }
+  ['slim', 'sass-rails', 'compass-rails', 'coffee-rails', 'therubyracer', 'uglifier', 'quiet_assets', 'turbolinks'].each{ |g| gem.add_dependency g }
+
+  gem.add_development_dependency 'minitest'
+  gem.add_development_dependency 'capybara'
 end
