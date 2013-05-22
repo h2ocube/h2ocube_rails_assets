@@ -1,5 +1,7 @@
 # H2ocubeRailsAssets
 
+[![Build Status](https://travis-ci.org/h2ocube/h2ocube_rails_assets.png?branch=master)](https://travis-ci.org/h2ocube/h2ocube_rails_assets)
+
 Just an assets collection.
 
 ## Installation
