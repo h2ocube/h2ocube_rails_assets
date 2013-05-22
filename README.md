@@ -38,6 +38,8 @@ Or install it yourself as:
     #=require highcharts
     #=require jasny-bootstrap
     #=require backbone
+    #=require turbolinks
+    #=require jquery.turbolinks
 
     @import compass
     @import jquery.ui

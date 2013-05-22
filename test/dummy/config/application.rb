@@ -13,5 +13,6 @@ module Dummy
     config.encoding = "utf-8"
     config.assets.enabled = true
     config.assets.compile = true
+    config.middleware.use ::ActionDispatch::Static, "#{Rails.root}/app"
   end
 end
