@@ -20,4 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rails'
   gem.add_development_dependency 'minitest'
   gem.add_development_dependency 'capybara'
+  gem.add_development_dependency 'zip'
+  gem.add_development_dependency 'vendorer'
 end

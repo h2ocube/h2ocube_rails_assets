@@ -1,0 +1,106 @@
+require 'zip'
+vendor_js = 'vendor/assets/javascripts/'
+vendor_css = 'vendor/assets/stylesheets/'
+vendor_img = 'vendor/assets/images/'
+vendor_tmp = 'vendor/assets/'
+
+def get to, form, rm = true
+  FileUtils.rm to if rm && File.exist?(to)
+  file to, form
+end
+
+def get_zip to, url
+  get "#{to}.zip", url, false
+  Zip::ZipFile.open("#{to}.zip").each do |f|
+    f_path = File.join(to, f.name)
+    FileUtils.mkdir_p File.dirname(f_path)
+    f.extract(f_path) unless File.exist?(f_path)
+  end
+end
+
+# jquery
+get "#{vendor_js}jquery/1.8.js", 'http://code.jquery.com/jquery-1.8.3.min.js'
+get "#{vendor_js}jquery/1.9.js", 'http://code.jquery.com/jquery-1.9.1.min.js'
+get "#{vendor_js}jquery/1.10.js", 'http://code.jquery.com/jquery-1.10.2.min.js'
+get "#{vendor_js}jquery/2.0.js", 'http://code.jquery.com/jquery-2.0.3.min.js'
+
+# jquery ui
+version = 'jquery-ui-1.10.3'
+get_zip "#{vendor_tmp}jquery.ui", "http://jqueryui.com/resources/download/#{version}.zip"
+%w{accordion autocomplete button core datepicker dialog draggable droppable effect-blind effect-bounce effect-clip effect-drop effect-explode effect-fade effect-fold effect-highlight effect-pulsate effect-scale effect-shake effect-slide effect-transfer effect menu mouse position progressbar resizable selectable slider sortable spinner tabs tooltip widget}.each do |f|
+  FileUtils.cp "#{vendor_tmp}jquery.ui/#{version}/ui/minified/jquery.ui.#{f}.min.js", "#{vendor_js}jquery.ui/jquery.ui.#{f}.js"
+end
+
+FileUtils.cp "#{vendor_tmp}jquery.ui/#{version}/themes/base/minified/jquery-ui.min.css", "#{vendor_css}jquery.ui.scss"
+
+body = File.read("#{vendor_css}jquery.ui.scss").gsub(/url\(images\/[^\.]+\.(gif|png)\)/){ |s|
+  filename = s.gsub('url(images/', '').gsub(')', '')
+  "image-url(\"jquery.ui/#{filename}\")"
+}
+
+File.open("#{vendor_css}jquery.ui.scss", 'w') do |f|
+  f.write body
+end
+
+Dir["#{vendor_tmp}jquery.ui/#{version}/themes/base/images/*"].each do |f|
+  FileUtils.cp f, "#{vendor_img}jquery.ui/#{File.basename f}"
+end
+
+# FileUtils.rm "#{vendor_tmp}jquery.ui.zip"
+FileUtils.remove_dir "#{vendor_tmp}jquery.ui"
+
+# jquery mobile
+verion = '1.3.1'
+get_zip "#{vendor_tmp}jquery.mobile", "http://code.jquery.com/mobile/#{verion}/jquery.mobile-#{verion}.zip"
+
+FileUtils.cp "#{vendor_tmp}jquery.mobile/jquery.mobile-#{verion}.min.js", "#{vendor_js}jquery.mobile.js"
+FileUtils.cp "#{vendor_tmp}jquery.mobile/jquery.mobile-#{verion}.min.css", "#{vendor_css}jquery.mobile.scss"
+
+body = File.read("#{vendor_css}jquery.mobile.scss").gsub(/url\(images\/[^\.]+\.(gif|png)\)/){ |s|
+  filename = s.gsub('url(images/', '').gsub(')', '')
+  "image-url(\"jquery.mobile/#{filename}\")"
+}
+
+File.open("#{vendor_css}jquery.mobile.scss", 'w') do |f|
+  f.write body
+end
+
+Dir["#{vendor_tmp}jquery.mobile/#{version}/themes/base/images/*"].each do |f|
+  FileUtils.cp f, "#{vendor_img}jquery.mobile/#{File.basename f}"
+end
+
+# FileUtils.rm "#{vendor_tmp}jquery.mobile.zip"
+FileUtils.remove_dir "#{vendor_tmp}jquery.mobile"
+
+# jquery timeago
+get "#{vendor_js}jquery.timeago.coffee", 'https://rawgithub.com/pragmaticly/smart-time-ago/master/src/timeago.coffee'
+
+# jquery cookie
+get "#{vendor_js}jquery.cookie.js", 'https://rawgithub.com/carhartl/jquery-cookie/master/jquery.cookie.js'
+
+# jquery validate
+get "#{vendor_js}jquery.validate.js", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js'
+
+# jquery fileupload
+get "#{vendor_js}jquery.fileupload.js", 'https://rawgithub.com/blueimp/jQuery-File-Upload/8.6.0/js/jquery.fileupload.js'
+get "#{vendor_js}jquery.iframe-transport.js", 'https://rawgithub.com/blueimp/jQuery-File-Upload/8.6.0/js/jquery.iframe-transport.js'
+
+# jquery pnotify
+get "#{vendor_js}jquery.pnotify.js", 'https://rawgithub.com/sciactive/pnotify/1.2.0/jquery.pnotify.min.js'
+get "#{vendor_css}jquery.pnotify.css", 'https://rawgithub.com/sciactive/pnotify/1.2.0/jquery.pnotify.default.css'
+
+# jquery fancybox
+
+    #=require jquery.lazyload
+    #=require bootstrap
+    #=require underscore
+    #=require sammy
+    #=require modernizr
+    #=require lazyload
+    #=require zepto
+    #=require zepto.all
+    #=require highcharts
+    #=require jasny-bootstrap
+    #=require backbone
+    #=require turbolinks
+    #=require jquery.turbolinks
