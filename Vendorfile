@@ -4,7 +4,7 @@ vendor_css = 'vendor/assets/stylesheets/'
 vendor_img = 'vendor/assets/images/'
 vendor_tmp = 'vendor/assets/'
 
-def get to, form, rm = true
+def get to, form, rm = false#true
   FileUtils.rm to if rm && File.exist?(to)
   file to, form
 end
@@ -15,6 +15,13 @@ def get_zip to, url
     f_path = File.join(to, f.name)
     FileUtils.mkdir_p File.dirname(f_path)
     f.extract(f_path) unless File.exist?(f_path)
+  end
+end
+
+def cp_img to, from
+  FileUtils.rm Dir.glob("#{to}/*")
+  Dir["#{from}/*"].select{ |f| /(gif|png|jpe?g)$/ =~ f }.each do |f|
+    FileUtils.cp f, "#{to}/#{File.basename f}"
   end
 end
 
@@ -42,9 +49,7 @@ File.open("#{vendor_css}jquery.ui.scss", 'w') do |f|
   f.write body
 end
 
-Dir["#{vendor_tmp}jquery.ui/#{version}/themes/base/images/*"].each do |f|
-  FileUtils.cp f, "#{vendor_img}jquery.ui/#{File.basename f}"
-end
+cp_img "#{vendor_img}jquery.ui", "#{vendor_tmp}jquery.ui/#{version}/themes/base/images"
 
 # FileUtils.rm "#{vendor_tmp}jquery.ui.zip"
 FileUtils.remove_dir "#{vendor_tmp}jquery.ui"
@@ -65,9 +70,7 @@ File.open("#{vendor_css}jquery.mobile.scss", 'w') do |f|
   f.write body
 end
 
-Dir["#{vendor_tmp}jquery.mobile/#{version}/themes/base/images/*"].each do |f|
-  FileUtils.cp f, "#{vendor_img}jquery.mobile/#{File.basename f}"
-end
+cp_img "#{vendor_img}jquery.mobile", "#{vendor_tmp}jquery.mobile/#{version}/themes/base/images"
 
 # FileUtils.rm "#{vendor_tmp}jquery.mobile.zip"
 FileUtils.remove_dir "#{vendor_tmp}jquery.mobile"
@@ -79,28 +82,90 @@ get "#{vendor_js}jquery.timeago.coffee", 'https://rawgithub.com/pragmaticly/smar
 get "#{vendor_js}jquery.cookie.js", 'https://rawgithub.com/carhartl/jquery-cookie/master/jquery.cookie.js'
 
 # jquery validate
-get "#{vendor_js}jquery.validate.js", 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js'
+version = '1.11.1'
+get "#{vendor_js}jquery.validate.js", "http://ajax.aspnetcdn.com/ajax/jquery.validate/#{version}/jquery.validate.min.js"
 
 # jquery fileupload
-get "#{vendor_js}jquery.fileupload.js", 'https://rawgithub.com/blueimp/jQuery-File-Upload/8.6.0/js/jquery.fileupload.js'
-get "#{vendor_js}jquery.iframe-transport.js", 'https://rawgithub.com/blueimp/jQuery-File-Upload/8.6.0/js/jquery.iframe-transport.js'
+version = '8.6.0'
+get "#{vendor_js}jquery.fileupload.js", "https://rawgithub.com/blueimp/jQuery-File-Upload/#{version}/js/jquery.fileupload.js"
+get "#{vendor_js}jquery.iframe-transport.js", "https://rawgithub.com/blueimp/jQuery-File-Upload/#{version}/js/jquery.iframe-transport.js"
 
 # jquery pnotify
-get "#{vendor_js}jquery.pnotify.js", 'https://rawgithub.com/sciactive/pnotify/1.2.0/jquery.pnotify.min.js'
-get "#{vendor_css}jquery.pnotify.css", 'https://rawgithub.com/sciactive/pnotify/1.2.0/jquery.pnotify.default.css'
+version = '1.2.0'
+get "#{vendor_js}jquery.pnotify.js", "https://rawgithub.com/sciactive/pnotify/#{version}/jquery.pnotify.min.js"
+get "#{vendor_css}jquery.pnotify.css", "https://rawgithub.com/sciactive/pnotify/#{version}/jquery.pnotify.default.css"
 
 # jquery fancybox
+version = '2.1.5'
+get_zip "#{vendor_tmp}jquery.fancybox", "https://github.com/fancyapps/fancyBox/zipball/v#{version}"
 
-    #=require jquery.lazyload
-    #=require bootstrap
-    #=require underscore
-    #=require sammy
-    #=require modernizr
-    #=require lazyload
-    #=require zepto
-    #=require zepto.all
-    #=require highcharts
-    #=require jasny-bootstrap
-    #=require backbone
-    #=require turbolinks
-    #=require jquery.turbolinks
+dir = Dir["#{vendor_tmp}jquery.fancybox/*/source"][0]
+
+FileUtils.cp "#{dir}/jquery.fancybox.pack.js", "#{vendor_js}jquery.fancybox.js"
+FileUtils.cp "#{dir}/jquery.fancybox.css", "#{vendor_css}jquery.fancybox.scss"
+
+body = File.read("#{vendor_css}jquery.fancybox.scss").gsub(/url\([^\)]+\)/){ |s|
+  filename = s.gsub('url(\'', '').gsub('\')', '')
+  "image-url(\"jquery.fancybox/#{filename}\")"
+}
+
+File.open("#{vendor_css}jquery.fancybox.scss", 'w') do |f|
+  f.write body
+end
+
+cp_img "#{vendor_img}jquery.fancybox", dir
+
+# FileUtils.rm "#{vendor_tmp}jquery.fancybox.zip"
+FileUtils.remove_dir "#{vendor_tmp}jquery.fancybox"
+
+# jquery lazyload
+get "#{vendor_js}jquery.lazyload.js", 'https://raw.github.com/tuupola/jquery_lazyload/master/jquery.lazyload.min.js'
+
+# bootstrap
+get_zip "#{vendor_tmp}bootstrap", 'http://twitter.github.io/bootstrap/assets/bootstrap.zip'
+
+FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap/js/bootstrap.min.js", "#{vendor_js}bootstrap.js"
+FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap/css/bootstrap.min.css", "#{vendor_css}bootstrap.scss"
+FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap/css/bootstrap-responsive.min.css", "#{vendor_css}bootstrap.responsive.css"
+# url("../img/glyphicons-halflings.png")
+body = File.read("#{vendor_css}bootstrap.scss").gsub(/url\([^\)]+\)/){ |s|
+  filename = s.gsub('url("../img/', '').gsub('")', '')
+  "image-url(\"bootstrap/#{filename}\")"
+}
+
+File.open("#{vendor_css}bootstrap.scss", 'w') do |f|
+  f.write body
+end
+
+cp_img "#{vendor_img}bootstrap", "#{vendor_tmp}bootstrap/bootstrap/img"
+
+# FileUtils.rm "#{vendor_tmp}bootstrap.zip"
+FileUtils.remove_dir "#{vendor_tmp}bootstrap"
+
+# underscore
+get "#{vendor_js}underscore.js", 'http://underscorejs.org/underscore-min.js'
+
+# sammy
+get "#{vendor_js}sammy.js", 'https://rawgithub.com/quirkey/sammy/master/lib/min/sammy-latest.min.js'
+
+# modernizr
+get "#{vendor_js}modernizr.js", 'http://modernizr.com/downloads/modernizr-latest.js'
+
+# lazyload
+version = '2.0.3'
+get "#{vendor_js}lazyload.js", "https://github.com/rgrove/lazyload/raw/release-#{version}/lazyload-min.js"
+
+# zepto
+get "#{vendor_js}zepto.js", 'http://zeptojs.com/zepto.min.js'
+
+version = '1.0'
+
+
+# highcharts
+version = '3.0.2'
+get_zip "#{vendor_tmp}highcharts", "http://www.highcharts.com/downloads/zips/Highcharts-#{version}.zip"
+# get "#{vendor_js}highcharts.js", ''
+# jasny-bootstrap
+# backbone
+# turbolinks
+# jquery.turbolinks
