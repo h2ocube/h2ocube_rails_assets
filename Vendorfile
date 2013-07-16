@@ -4,7 +4,7 @@ vendor_css = 'vendor/assets/stylesheets/'
 vendor_img = 'vendor/assets/images/'
 vendor_tmp = 'vendor/assets/'
 
-def get to, form, rm = false#true
+def get to, form, rm = true
   FileUtils.rm to if rm && File.exist?(to)
   file to, form
 end
@@ -51,7 +51,7 @@ end
 
 cp_img "#{vendor_img}jquery.ui", "#{vendor_tmp}jquery.ui/#{version}/themes/base/images"
 
-# FileUtils.rm "#{vendor_tmp}jquery.ui.zip"
+FileUtils.rm "#{vendor_tmp}jquery.ui.zip"
 FileUtils.remove_dir "#{vendor_tmp}jquery.ui"
 
 # jquery mobile
@@ -72,7 +72,7 @@ end
 
 cp_img "#{vendor_img}jquery.mobile", "#{vendor_tmp}jquery.mobile/#{version}/themes/base/images"
 
-# FileUtils.rm "#{vendor_tmp}jquery.mobile.zip"
+FileUtils.rm "#{vendor_tmp}jquery.mobile.zip"
 FileUtils.remove_dir "#{vendor_tmp}jquery.mobile"
 
 # jquery timeago
@@ -115,11 +115,11 @@ end
 
 cp_img "#{vendor_img}jquery.fancybox", dir
 
-# FileUtils.rm "#{vendor_tmp}jquery.fancybox.zip"
+FileUtils.rm "#{vendor_tmp}jquery.fancybox.zip"
 FileUtils.remove_dir "#{vendor_tmp}jquery.fancybox"
 
 # jquery lazyload
-get "#{vendor_js}jquery.lazyload.js", 'https://raw.github.com/tuupola/jquery_lazyload/master/jquery.lazyload.min.js'
+get "#{vendor_js}jquery.lazyload.js", 'https://rawgithub.com/tuupola/jquery_lazyload/master/jquery.lazyload.min.js'
 
 # bootstrap
 get_zip "#{vendor_tmp}bootstrap", 'http://twitter.github.io/bootstrap/assets/bootstrap.zip'
@@ -127,7 +127,7 @@ get_zip "#{vendor_tmp}bootstrap", 'http://twitter.github.io/bootstrap/assets/boo
 FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap/js/bootstrap.min.js", "#{vendor_js}bootstrap.js"
 FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap/css/bootstrap.min.css", "#{vendor_css}bootstrap.scss"
 FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap/css/bootstrap-responsive.min.css", "#{vendor_css}bootstrap.responsive.css"
-# url("../img/glyphicons-halflings.png")
+
 body = File.read("#{vendor_css}bootstrap.scss").gsub(/url\([^\)]+\)/){ |s|
   filename = s.gsub('url("../img/', '').gsub('")', '')
   "image-url(\"bootstrap/#{filename}\")"
@@ -139,7 +139,7 @@ end
 
 cp_img "#{vendor_img}bootstrap", "#{vendor_tmp}bootstrap/bootstrap/img"
 
-# FileUtils.rm "#{vendor_tmp}bootstrap.zip"
+FileUtils.rm "#{vendor_tmp}bootstrap.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap"
 
 # underscore
@@ -160,12 +160,37 @@ get "#{vendor_js}zepto.js", 'http://zeptojs.com/zepto.min.js'
 
 version = '1.0'
 
+FileUtils.rm Dir.glob("#{vendor_js}zepto/*")
+%w(assets data selector touch gesture stack).each do |name|
+  get "#{vendor_js}zepto/#{name}.js", "https://rawgithub.com/madrobby/zepto/v#{version}/src/#{name}.js"
+end
 
 # highcharts
-version = '3.0.2'
-get_zip "#{vendor_tmp}highcharts", "http://www.highcharts.com/downloads/zips/Highcharts-#{version}.zip"
-# get "#{vendor_js}highcharts.js", ''
+get "#{vendor_js}highcharts.js", 'http://code.highcharts.com/highcharts.js'
+
 # jasny-bootstrap
+get_zip "#{vendor_tmp}jasny-bootstrap", 'http://jasny.github.io/bootstrap/assets/bootstrap.zip'
+
+FileUtils.cp "#{vendor_tmp}jasny-bootstrap/bootstrap/js/bootstrap.min.js", "#{vendor_js}jasny-bootstrap.js"
+FileUtils.cp "#{vendor_tmp}jasny-bootstrap/bootstrap/css/bootstrap.min.css", "#{vendor_css}jasny-bootstrap.scss"
+FileUtils.cp "#{vendor_tmp}jasny-bootstrap/bootstrap/css/bootstrap-responsive.min.css", "#{vendor_css}jasny-bootstrap.responsive.css"
+
+body = File.read("#{vendor_css}jasny-bootstrap.scss").gsub(/url\([^\)]+\)/){ |s|
+  filename = s.gsub('url("../img/', '').gsub('")', '')
+  "image-url(\"jasny-bootstrap/#{filename}\")"
+}
+
+File.open("#{vendor_css}jasny-bootstrap.scss", 'w') do |f|
+  f.write body
+end
+
+cp_img "#{vendor_img}jasny-bootstrap", "#{vendor_tmp}jasny-bootstrap/bootstrap/img"
+
+FileUtils.rm "#{vendor_tmp}jasny-bootstrap.zip"
+FileUtils.remove_dir "#{vendor_tmp}jasny-bootstrap"
+
 # backbone
-# turbolinks
+get "#{vendor_js}backbone.js", 'http://backbonejs.org/backbone-min.js'
+
 # jquery.turbolinks
+get "#{vendor_js}jquery.turbolinks.coffee", 'https://rawgithub.com/kossnocorp/jquery.turbolinks/master/src/jquery.turbolinks.coffee'
