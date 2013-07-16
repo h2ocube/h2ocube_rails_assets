@@ -6,6 +6,6 @@ describe 'turbolinks integration' do
 
   it 'jquery.turbolinks' do
     visit '/assets/jquery-turbolinks_test.js'
-    page.html.must_include 'turbolinksReady'
+    page.html.must_include '$.turbo'
   end
 end

@@ -1,5 +1,6 @@
 # H2ocubeRailsAssets
 
+[![Gem Version](https://badge.fury.io/rb/h2ocube_rails_assets.png)](http://badge.fury.io/rb/h2ocube_rails_assets)
 [![Build Status](https://travis-ci.org/h2ocube/h2ocube_rails_assets.png?branch=master)](https://travis-ci.org/h2ocube/h2ocube_rails_assets)
 
 Just an assets collection.

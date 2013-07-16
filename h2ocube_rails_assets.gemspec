@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = 'h2ocube_rails_assets'
-  gem.version       = '0.0.19'
+  gem.version       = '0.0.20'
   gem.authors       = ['Ben']
   gem.email         = ['ben@h2ocube.com']
   gem.description   = %q{Just an assets collection}
@@ -16,10 +16,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  ['slim', 'sass-rails', 'compass-rails', 'coffee-rails', 'therubyracer', 'uglifier', 'quiet_assets', 'turbolinks'].each{ |g| gem.add_dependency g }
-  gem.add_development_dependency 'rails'
-  gem.add_development_dependency 'minitest'
-  gem.add_development_dependency 'capybara'
-  gem.add_development_dependency 'zip'
-  gem.add_development_dependency 'vendorer'
+  %w(slim sass-rails compass-rails coffee-rails therubyracer uglifier quiet_assets turbolinks).each{ |g| gem.add_dependency g }
+
+  %w(rails minitest capybara zip vendorer).each{ |g| gem.add_development_dependency g }
 end
