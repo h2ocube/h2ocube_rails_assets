@@ -5,7 +5,8 @@ if defined?(Rails)
   module H2ocubeRailsAssets
       class Railtie < Rails::Railtie
         initializer 'h2ocube_rails_assets.require_dependency' do |app|
-          Dir[File.join(PATH, '../vendor/assets/*')].each{ |path| app.assets.append_path path }
+          app.config.assets.paths += Dir[File.join(PATH, '../vendor/assets/*')]
+          app.config.assets.paths << Compass::Frameworks['compass'].stylesheets_directory
         end
       end
   end

@@ -20,4 +20,5 @@ Gem::Specification.new do |gem|
 
   %w(minitest capybara zip vendorer).each{ |g| gem.add_development_dependency g }
   gem.add_development_dependency 'rails', '~> 3.2'
+  gem.add_development_dependency 'pry'
 end
