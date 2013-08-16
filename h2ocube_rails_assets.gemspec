@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = 'h2ocube_rails_assets'
-  gem.version       = '0.0.21'
+  gem.version       = '0.0.22'
   gem.authors       = ['Ben']
   gem.email         = ['ben@h2ocube.com']
   gem.description   = %q{Just an assets collection}
@@ -21,5 +21,4 @@ Gem::Specification.new do |gem|
 
   %w(minitest capybara zip vendorer).each{ |g| gem.add_development_dependency g }
   gem.add_development_dependency 'rails', '~> 3.2'
-  gem.add_development_dependency 'pry'
 end
