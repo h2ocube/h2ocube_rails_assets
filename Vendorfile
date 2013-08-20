@@ -19,8 +19,9 @@ def get_zip to, url
 end
 
 def cp_img to, from
+  FileUtils.mkdir_p to
   FileUtils.rm Dir.glob("#{to}/*")
-  Dir["#{from}/*"].select{ |f| /(gif|png|jpe?g)$/ =~ f }.each do |f|
+  Dir["#{from}/*"].select{ |f| /\.(eot|svg|ttf|woff|gif|png|jpe?g)$/ =~ f }.each do |f|
     FileUtils.cp f, "#{to}/#{File.basename f}"
   end
 end
@@ -142,6 +143,27 @@ cp_img "#{vendor_img}bootstrap", "#{vendor_tmp}bootstrap/bootstrap/img"
 FileUtils.rm "#{vendor_tmp}bootstrap.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap"
 
+# bootstrap3
+version = '3.0.0'
+get_zip "#{vendor_tmp}bootstrap", "https://github.com/twbs/bootstrap/releases/download/v#{version}/bootstrap-#{version}-dist.zip"
+
+FileUtils.cp "#{vendor_tmp}bootstrap/dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
+FileUtils.cp "#{vendor_tmp}bootstrap/dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
+
+body = File.read("#{vendor_css}bootstrap3.scss").gsub(/url\([^\)]+\)/){ |s|
+  filename = s.gsub("url('../fonts/", '').gsub("')", '')
+  "image-url(\"bootstrap3/#{filename}\")"
+}
+
+File.open("#{vendor_css}bootstrap3.scss", 'w') do |f|
+  f.write body
+end
+
+cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap/dist/fonts"
+
+FileUtils.rm "#{vendor_tmp}bootstrap.zip"
+FileUtils.remove_dir "#{vendor_tmp}bootstrap"
+exit
 # underscore
 get "#{vendor_js}underscore.js", 'http://underscorejs.org/underscore-min.js'
 
