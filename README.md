@@ -32,6 +32,7 @@ Or install it yourself as:
     #=require jquery.fancybox
     #=require jquery.lazyload
     #=require bootstrap
+    #=require bootstrap3
     #=require underscore
     #=require sammy
     #=require modernizr
@@ -51,6 +52,7 @@ Or install it yourself as:
     @import jquery.fancybox
     @import bootstrap
     @import bootstrap.responsive
+    @import bootstrap3
     @import normalize
     @import jasny-bootstrap
 
