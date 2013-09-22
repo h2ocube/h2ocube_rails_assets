@@ -1,10 +1,16 @@
-# jQuery.Turbolinks ~ https://github.com/kossnocorp/jquery.turbolinks
+###
+jQuery.Turbolinks ~ https://github.com/kossnocorp/jquery.turbolinks
+jQuery plugin for drop-in fix binded events problem caused by Turbolinks
+
+The MIT License
+Copyright (c) 2012-2013 Sasha Koss & Rico Sta. Cruz
+###
 
 $ = window.jQuery or require?('jquery')
 $document = $(document)
 
 $.turbo =
-  version: '2.0.0.rc'
+  version: '2.0.1'
 
   isReady: false
 
@@ -16,8 +22,10 @@ $.turbo =
       .on("#{fetch}.turbo", @onFetch)
 
   addCallback: (callback) ->
-    $document.on('turbo:ready', callback)
-    callback($) if $.turbo.isReady
+    if $.turbo.isReady
+      callback($)
+    else
+      $document.on 'turbo:ready', -> callback($)
 
   onLoad: ->
     $.turbo.isReady = true

@@ -145,10 +145,10 @@ FileUtils.remove_dir "#{vendor_tmp}bootstrap"
 
 # bootstrap3
 version = '3.0.0'
-get_zip "#{vendor_tmp}bootstrap", "https://github.com/twbs/bootstrap/releases/download/v#{version}/bootstrap-#{version}-dist.zip"
+get_zip "#{vendor_tmp}bootstrap", "https://github.com/twbs/bootstrap/archive/v#{version}.zip"
 
-FileUtils.cp "#{vendor_tmp}bootstrap/dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
-FileUtils.cp "#{vendor_tmp}bootstrap/dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
+FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap-#{version}/dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
+FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap-#{version}/dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
 
 body = File.read("#{vendor_css}bootstrap3.scss").gsub(/url\([^\)]+\)/){ |s|
   filename = s.gsub("url('../fonts/", '').gsub("')", '')
@@ -159,11 +159,11 @@ File.open("#{vendor_css}bootstrap3.scss", 'w') do |f|
   f.write body
 end
 
-cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap/dist/fonts"
+cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap/bootstrap-#{version}/dist/fonts"
 
 FileUtils.rm "#{vendor_tmp}bootstrap.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap"
-exit
+
 # underscore
 get "#{vendor_js}underscore.js", 'http://underscorejs.org/underscore-min.js'
 

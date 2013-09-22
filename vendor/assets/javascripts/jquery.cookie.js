@@ -17,27 +17,33 @@
 
 	var pluses = /\+/g;
 
-	function raw(s) {
-		return s;
-	}
-
-	function decoded(s) {
-		return decodeURIComponent(s.replace(pluses, ' '));
-	}
-
-	function converted(s) {
-		if (s.indexOf('"') === 0) {
-			// This is a quoted cookie as according to RFC2068, unescape
-			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+	function decode(s) {
+		if (config.raw) {
+			return s;
 		}
 		try {
+			// If we can't decode the cookie, ignore it, it's unusable.
+			return decodeURIComponent(s.replace(pluses, ' '));
+		} catch(e) {}
+	}
+
+	function decodeAndParse(s) {
+		if (s.indexOf('"') === 0) {
+			// This is a quoted cookie as according to RFC2068, unescape...
+			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+		}
+
+		s = decode(s);
+
+		try {
+			// If we can't parse the cookie, ignore it, it's unusable.
 			return config.json ? JSON.parse(s) : s;
-		} catch(er) {}
+		} catch(e) {}
 	}
 
 	var config = $.cookie = function (key, value, options) {
 
-		// write
+		// Write
 		if (value !== undefined) {
 			options = $.extend({}, config.defaults, options);
 
@@ -59,22 +65,28 @@
 			].join(''));
 		}
 
-		// read
-		var decode = config.raw ? raw : decoded;
-		var cookies = document.cookie.split('; ');
+		// Read
+
 		var result = key ? undefined : {};
+
+		// To prevent the for loop in the first place assign an empty array
+		// in case there are no cookies at all. Also prevents odd result when
+		// calling $.cookie().
+		var cookies = document.cookie ? document.cookie.split('; ') : [];
+
 		for (var i = 0, l = cookies.length; i < l; i++) {
 			var parts = cookies[i].split('=');
 			var name = decode(parts.shift());
-			var cookie = decode(parts.join('='));
+			var cookie = parts.join('=');
 
 			if (key && key === name) {
-				result = converted(cookie);
+				result = decodeAndParse(cookie);
 				break;
 			}
 
-			if (!key) {
-				result[name] = converted(cookie);
+			// Prevent storing a cookie that we couldn't decode.
+			if (!key && (cookie = decodeAndParse(cookie)) !== undefined) {
+				result[name] = cookie;
 			}
 		}
 
