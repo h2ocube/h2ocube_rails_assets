@@ -18,13 +18,32 @@ def get_zip to, url
   end
 end
 
-def cp_img to, from
+def cp_img to, from, clear = true
   FileUtils.mkdir_p to
-  FileUtils.rm Dir.glob("#{to}/*")
+  FileUtils.rm Dir.glob("#{to}/*") if clear
   Dir["#{from}/*"].select{ |f| /\.(eot|svg|ttf|woff|gif|png|jpe?g)$/ =~ f }.each do |f|
     FileUtils.cp f, "#{to}/#{File.basename f}"
   end
 end
+
+# semantic-ui
+get_zip "#{vendor_tmp}semantic", 'http://semantic-ui.com/release/semantic.zip'
+FileUtils.cp "#{vendor_tmp}semantic/packaged/css/semantic.min.css", "#{vendor_css}semantic.scss"
+FileUtils.cp "#{vendor_tmp}semantic/packaged/javascript/semantic.min.js", "#{vendor_js}semantic.js"
+cp_img "#{vendor_img}semantic", "#{vendor_tmp}semantic/packaged/images"
+cp_img "#{vendor_img}semantic", "#{vendor_tmp}semantic/packaged/fonts", false
+
+body = File.read("#{vendor_css}semantic.scss").gsub(/url\([^\)]+\)/){ |s|
+  filename = s.gsub(/url\(..\/(images|fonts)\//, '').gsub(')', '')
+  "image-url(\"semantic/#{filename}\")"
+}
+
+File.open("#{vendor_css}semantic.scss", 'w') do |f|
+  f.write body
+end
+
+FileUtils.rm "#{vendor_tmp}semantic.zip"
+FileUtils.remove_dir "#{vendor_tmp}semantic"
 
 # jquery
 get "#{vendor_js}jquery/1.8.js", 'http://code.jquery.com/jquery-1.8.3.min.js'

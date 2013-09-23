@@ -44,6 +44,7 @@ Or install it yourself as:
     #=require backbone
     #=require turbolinks
     #=require jquery.turbolinks
+    #=require semantic
 
     @import compass
     @import jquery.ui
@@ -55,6 +56,7 @@ Or install it yourself as:
     @import bootstrap3
     @import normalize
     @import jasny-bootstrap
+    @import semantic
 
 ## Contributing
 
