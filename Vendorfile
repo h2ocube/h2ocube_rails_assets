@@ -27,7 +27,7 @@ def cp_img to, from, clear = true
 end
 
 # semantic-ui
-get_zip "#{vendor_tmp}semantic", 'http://semantic-ui.com/release/semantic.zip'
+get_zip "#{vendor_tmp}semantic", 'http://semantic-ui.com/build/semantic.zip'
 FileUtils.cp "#{vendor_tmp}semantic/packaged/css/semantic.min.css", "#{vendor_css}semantic.scss"
 FileUtils.cp "#{vendor_tmp}semantic/packaged/javascript/semantic.min.js", "#{vendor_js}semantic.js"
 cp_img "#{vendor_img}semantic", "#{vendor_tmp}semantic/packaged/images"
