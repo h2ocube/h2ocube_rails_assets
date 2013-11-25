@@ -40,7 +40,6 @@ Or install it yourself as:
     #=require zepto
     #=require zepto.all
     #=require highcharts
-    #=require jasny-bootstrap
     #=require backbone
     #=require turbolinks
     #=require jquery.turbolinks
@@ -55,7 +54,6 @@ Or install it yourself as:
     @import bootstrap.responsive
     @import bootstrap3
     @import normalize
-    @import jasny-bootstrap
     @import semantic
 
 ## Contributing

@@ -11,7 +11,7 @@ end
 
 def get_zip to, url
   get "#{to}.zip", url, false
-  Zip::ZipFile.open("#{to}.zip").each do |f|
+  Zip::File.open("#{to}.zip").each do |f|
     f_path = File.join(to, f.name)
     FileUtils.mkdir_p File.dirname(f_path)
     f.extract(f_path) unless File.exist?(f_path)
@@ -106,7 +106,7 @@ version = '1.11.1'
 get "#{vendor_js}jquery.validate.js", "http://ajax.aspnetcdn.com/ajax/jquery.validate/#{version}/jquery.validate.min.js"
 
 # jquery fileupload
-version = '8.6.0'
+version = '9.4.1'
 get "#{vendor_js}jquery.fileupload.js", "https://rawgithub.com/blueimp/jQuery-File-Upload/#{version}/js/jquery.fileupload.js"
 get "#{vendor_js}jquery.iframe-transport.js", "https://rawgithub.com/blueimp/jQuery-File-Upload/#{version}/js/jquery.iframe-transport.js"
 
@@ -163,11 +163,11 @@ FileUtils.rm "#{vendor_tmp}bootstrap.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap"
 
 # bootstrap3
-version = '3.0.0'
-get_zip "#{vendor_tmp}bootstrap", "https://github.com/twbs/bootstrap/archive/v#{version}.zip"
+version = '3.0.2'
+get_zip "#{vendor_tmp}bootstrap3", "https://github.com/twbs/bootstrap/releases/download/v#{version}/bootstrap-#{version}-dist.zip"
 
-FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap-#{version}/dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
-FileUtils.cp "#{vendor_tmp}bootstrap/bootstrap-#{version}/dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
+FileUtils.cp "#{vendor_tmp}bootstrap3/dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
+FileUtils.cp "#{vendor_tmp}bootstrap3/dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
 
 body = File.read("#{vendor_css}bootstrap3.scss").gsub(/url\([^\)]+\)/){ |s|
   filename = s.gsub("url('../fonts/", '').gsub("')", '')
@@ -178,10 +178,10 @@ File.open("#{vendor_css}bootstrap3.scss", 'w') do |f|
   f.write body
 end
 
-cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap/bootstrap-#{version}/dist/fonts"
+cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap3/dist/fonts"
 
-FileUtils.rm "#{vendor_tmp}bootstrap.zip"
-FileUtils.remove_dir "#{vendor_tmp}bootstrap"
+FileUtils.rm "#{vendor_tmp}bootstrap3.zip"
+FileUtils.remove_dir "#{vendor_tmp}bootstrap3"
 
 # underscore
 get "#{vendor_js}underscore.js", 'http://underscorejs.org/underscore-min.js'
@@ -208,27 +208,6 @@ end
 
 # highcharts
 get "#{vendor_js}highcharts.js", 'http://code.highcharts.com/highcharts.js'
-
-# jasny-bootstrap
-get_zip "#{vendor_tmp}jasny-bootstrap", 'http://jasny.github.io/bootstrap/assets/bootstrap.zip'
-
-FileUtils.cp "#{vendor_tmp}jasny-bootstrap/bootstrap/js/bootstrap.min.js", "#{vendor_js}jasny-bootstrap.js"
-FileUtils.cp "#{vendor_tmp}jasny-bootstrap/bootstrap/css/bootstrap.min.css", "#{vendor_css}jasny-bootstrap.scss"
-FileUtils.cp "#{vendor_tmp}jasny-bootstrap/bootstrap/css/bootstrap-responsive.min.css", "#{vendor_css}jasny-bootstrap.responsive.css"
-
-body = File.read("#{vendor_css}jasny-bootstrap.scss").gsub(/url\([^\)]+\)/){ |s|
-  filename = s.gsub('url("../img/', '').gsub('")', '')
-  "image-url(\"jasny-bootstrap/#{filename}\")"
-}
-
-File.open("#{vendor_css}jasny-bootstrap.scss", 'w') do |f|
-  f.write body
-end
-
-cp_img "#{vendor_img}jasny-bootstrap", "#{vendor_tmp}jasny-bootstrap/bootstrap/img"
-
-FileUtils.rm "#{vendor_tmp}jasny-bootstrap.zip"
-FileUtils.remove_dir "#{vendor_tmp}jasny-bootstrap"
 
 # backbone
 get "#{vendor_js}backbone.js", 'http://backbonejs.org/backbone-min.js'

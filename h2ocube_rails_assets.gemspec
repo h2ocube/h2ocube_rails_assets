@@ -19,6 +19,6 @@ Gem::Specification.new do |gem|
 
   %w(slim sass-rails compass-rails coffee-rails therubyracer uglifier quiet_assets turbolinks).each{ |g| gem.add_dependency g }
 
-  %w(minitest capybara zip vendorer).each{ |g| gem.add_development_dependency g }
+  %w(minitest capybara rubyzip vendorer).each{ |g| gem.add_development_dependency g }
   gem.add_development_dependency 'rails', '~> 3.2'
 end
