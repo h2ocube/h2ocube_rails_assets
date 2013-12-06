@@ -22,6 +22,7 @@ Or install it yourself as:
 ## Usage
 
     #=require jquery
+    #=require jquery.ujs
     #=require jquery.ui
     #=require jquery.mobile
     #=require jquery.timeago
@@ -44,6 +45,7 @@ Or install it yourself as:
     #=require turbolinks
     #=require jquery.turbolinks
     #=require semantic
+    #=require angular
 
     @import compass
     @import jquery.ui

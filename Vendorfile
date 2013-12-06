@@ -1,3 +1,6 @@
+# gem install vendorer
+# vendorer
+
 require 'zip'
 vendor_js = 'vendor/assets/javascripts/'
 vendor_css = 'vendor/assets/stylesheets/'
@@ -214,6 +217,13 @@ get "#{vendor_js}backbone.js", 'http://backbonejs.org/backbone-min.js'
 
 # jquery.turbolinks
 get "#{vendor_js}jquery.turbolinks.coffee", 'https://rawgithub.com/kossnocorp/jquery.turbolinks/master/src/jquery.turbolinks.coffee'
+
+# AngularJS
+version = '1.2.3'
+get "#{vendor_js}angular.js", "https://ajax.googleapis.com/ajax/libs/angularjs/#{version}/angular.min.js"
+
+# jQuery-ujs
+get "#{vendor_js}jquery.ujs.js", 'https://raw.github.com/indirect/jquery-rails/master/vendor/assets/javascripts/jquery_ujs.js'
 
 list = `git grep -n sourceMappingURL`.split("\n")
 list.delete_at 0
