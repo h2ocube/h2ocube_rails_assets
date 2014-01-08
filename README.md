@@ -57,6 +57,19 @@ Or install it yourself as:
     @import bootstrap3
     @import normalize
     @import semantic
+    @import font-awesome
+
+## Include Gems
+
+* slim http://slim-lang.com/
+* sass-rails https://github.com/rails/sass-rails
+* compass-rails https://github.com/Compass/compass-rails
+* coffee-rails https://github.com/rails/coffee-rails
+* therubyracer https://github.com/cowboyd/therubyracer
+* uglifier https://github.com/lautis/uglifier
+* quiet_assets https://github.com/evrone/quiet_assets
+* turbolinks https://github.com/rails/turbolinks
+* font-awesome-rails https://github.com/bokmann/font-awesome-rails
 
 ## Contributing
 
