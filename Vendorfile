@@ -51,11 +51,11 @@ FileUtils.remove_dir "#{vendor_tmp}semantic"
 # jquery
 get "#{vendor_js}jquery/1.8.js", 'http://code.jquery.com/jquery-1.8.3.min.js'
 get "#{vendor_js}jquery/1.9.js", 'http://code.jquery.com/jquery-1.9.1.min.js'
-get "#{vendor_js}jquery/1.10.js", 'http://code.jquery.com/jquery-1.10.2.min.js'
-get "#{vendor_js}jquery/2.0.js", 'http://code.jquery.com/jquery-2.0.3.min.js'
+get "#{vendor_js}jquery/1.10.js", 'http://code.jquery.com/jquery-1.11.0.min.js'
+get "#{vendor_js}jquery/2.0.js", 'http://code.jquery.com/jquery-2.1.0.min.js'
 
 # jquery ui
-version = 'jquery-ui-1.10.3'
+version = 'jquery-ui-1.10.4'
 get_zip "#{vendor_tmp}jquery.ui", "http://jqueryui.com/resources/download/#{version}.zip"
 %w{accordion autocomplete button core datepicker dialog draggable droppable effect-blind effect-bounce effect-clip effect-drop effect-explode effect-fade effect-fold effect-highlight effect-pulsate effect-scale effect-shake effect-slide effect-transfer effect menu mouse position progressbar resizable selectable slider sortable spinner tabs tooltip widget}.each do |f|
   FileUtils.cp "#{vendor_tmp}jquery.ui/#{version}/ui/minified/jquery.ui.#{f}.min.js", "#{vendor_js}jquery.ui/jquery.ui.#{f}.js"
@@ -78,7 +78,7 @@ FileUtils.rm "#{vendor_tmp}jquery.ui.zip"
 FileUtils.remove_dir "#{vendor_tmp}jquery.ui"
 
 # jquery mobile
-version = '1.3.2'
+version = '1.4.1'
 get_zip "#{vendor_tmp}jquery.mobile", "http://jquerymobile.com/resources/download/jquery.mobile-#{version}.zip"
 
 FileUtils.cp "#{vendor_tmp}jquery.mobile/jquery.mobile-#{version}.min.js", "#{vendor_js}jquery.mobile.js"
@@ -109,7 +109,7 @@ version = '1.11.1'
 get "#{vendor_js}jquery.validate.js", "http://ajax.aspnetcdn.com/ajax/jquery.validate/#{version}/jquery.validate.min.js"
 
 # jquery fileupload
-version = '9.4.1'
+version = '9.5.6'
 get "#{vendor_js}jquery.fileupload.js", "https://rawgithub.com/blueimp/jQuery-File-Upload/#{version}/js/jquery.fileupload.js"
 get "#{vendor_js}jquery.iframe-transport.js", "https://rawgithub.com/blueimp/jQuery-File-Upload/#{version}/js/jquery.iframe-transport.js"
 
@@ -166,11 +166,11 @@ FileUtils.rm "#{vendor_tmp}bootstrap.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap"
 
 # bootstrap3
-version = '3.0.2'
+version = '3.1.1'
 get_zip "#{vendor_tmp}bootstrap3", "https://github.com/twbs/bootstrap/releases/download/v#{version}/bootstrap-#{version}-dist.zip"
 
-FileUtils.cp "#{vendor_tmp}bootstrap3/dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
-FileUtils.cp "#{vendor_tmp}bootstrap3/dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
+FileUtils.cp "#{vendor_tmp}bootstrap3/bootstrap-#{version}-dist/js/bootstrap.min.js", "#{vendor_js}bootstrap3.js"
+FileUtils.cp "#{vendor_tmp}bootstrap3/bootstrap-#{version}-dist/css/bootstrap.min.css", "#{vendor_css}bootstrap3.scss"
 
 body = File.read("#{vendor_css}bootstrap3.scss").gsub(/url\([^\)]+\)/){ |s|
   filename = s.gsub("url('../fonts/", '').gsub("')", '')
@@ -181,7 +181,7 @@ File.open("#{vendor_css}bootstrap3.scss", 'w') do |f|
   f.write body
 end
 
-cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap3/dist/fonts"
+cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap3/bootstrap-#{version}-dist/fonts"
 
 FileUtils.rm "#{vendor_tmp}bootstrap3.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap3"
@@ -202,7 +202,7 @@ get "#{vendor_js}lazyload.js", "https://github.com/rgrove/lazyload/raw/release-#
 # zepto
 get "#{vendor_js}zepto.js", 'http://zeptojs.com/zepto.min.js'
 
-version = '1.0'
+version = '1.1.3'
 
 FileUtils.rm Dir.glob("#{vendor_js}zepto/*")
 %w(assets data selector touch gesture stack).each do |name|
@@ -219,7 +219,7 @@ get "#{vendor_js}backbone.js", 'http://backbonejs.org/backbone-min.js'
 get "#{vendor_js}jquery.turbolinks.coffee", 'https://rawgithub.com/kossnocorp/jquery.turbolinks/master/src/jquery.turbolinks.coffee'
 
 # AngularJS
-version = '1.2.3'
+version = '1.2.13'
 get "#{vendor_js}angular.js", "https://ajax.googleapis.com/ajax/libs/angularjs/#{version}/angular.min.js"
 
 # jQuery-ujs
