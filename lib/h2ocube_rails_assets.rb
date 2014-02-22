@@ -1,5 +1,5 @@
 if defined?(Rails)
-  ['slim', 'sass-rails', 'compass-rails', 'coffee-rails', 'v8', 'uglifier', 'turbolinks', 'quiet_assets', 'font-awesome-rails'].each{ |g| require g }
+  ['slim', 'sass-rails', 'compass-rails', 'coffee-rails', 'v8', 'uglifier', 'quiet_assets', 'font-awesome-rails'].each{ |g| require g }
 
   module H2ocubeRailsAssets
       class Railtie < Rails::Railtie
