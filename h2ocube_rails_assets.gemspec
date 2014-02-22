@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  %w(slim sass-rails compass-rails coffee-rails therubyracer uglifier quiet_assets turbolinks font-awesome-rails).each{ |g| gem.add_dependency g }
+  %w(slim sass-rails compass-rails coffee-rails therubyracer uglifier quiet_assets turbolinks font-awesome-rails rails-backbone).each{ |g| gem.add_dependency g }
 
   %w(minitest capybara rubyzip vendorer).each{ |g| gem.add_development_dependency g }
   gem.add_development_dependency 'rails', '~> 3.2'

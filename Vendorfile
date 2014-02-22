@@ -54,53 +54,6 @@ get "#{vendor_js}jquery/1.9.js", 'http://code.jquery.com/jquery-1.9.1.min.js'
 get "#{vendor_js}jquery/1.10.js", 'http://code.jquery.com/jquery-1.11.0.min.js'
 get "#{vendor_js}jquery/2.0.js", 'http://code.jquery.com/jquery-2.1.0.min.js'
 
-# jquery ui
-version = 'jquery-ui-1.10.4'
-get_zip "#{vendor_tmp}jquery.ui", "http://jqueryui.com/resources/download/#{version}.zip"
-%w{accordion autocomplete button core datepicker dialog draggable droppable effect-blind effect-bounce effect-clip effect-drop effect-explode effect-fade effect-fold effect-highlight effect-pulsate effect-scale effect-shake effect-slide effect-transfer effect menu mouse position progressbar resizable selectable slider sortable spinner tabs tooltip widget}.each do |f|
-  FileUtils.cp "#{vendor_tmp}jquery.ui/#{version}/ui/minified/jquery.ui.#{f}.min.js", "#{vendor_js}jquery.ui/jquery.ui.#{f}.js"
-end
-
-FileUtils.cp "#{vendor_tmp}jquery.ui/#{version}/themes/base/minified/jquery-ui.min.css", "#{vendor_css}jquery.ui.scss"
-
-body = File.read("#{vendor_css}jquery.ui.scss").gsub(/url\(images\/[^\.]+\.(gif|png)\)/){ |s|
-  filename = s.gsub('url(images/', '').gsub(')', '')
-  "image-url(\"jquery.ui/#{filename}\")"
-}
-
-File.open("#{vendor_css}jquery.ui.scss", 'w') do |f|
-  f.write body
-end
-
-cp_img "#{vendor_img}jquery.ui", "#{vendor_tmp}jquery.ui/#{version}/themes/base/images"
-
-FileUtils.rm "#{vendor_tmp}jquery.ui.zip"
-FileUtils.remove_dir "#{vendor_tmp}jquery.ui"
-
-# jquery mobile
-version = '1.4.1'
-get_zip "#{vendor_tmp}jquery.mobile", "http://jquerymobile.com/resources/download/jquery.mobile-#{version}.zip"
-
-FileUtils.cp "#{vendor_tmp}jquery.mobile/jquery.mobile-#{version}.min.js", "#{vendor_js}jquery.mobile.js"
-FileUtils.cp "#{vendor_tmp}jquery.mobile/jquery.mobile-#{version}.min.css", "#{vendor_css}jquery.mobile.scss"
-
-body = File.read("#{vendor_css}jquery.mobile.scss").gsub(/url\(images\/[^\.]+\.(gif|png)\)/){ |s|
-  filename = s.gsub('url(images/', '').gsub(')', '')
-  "image-url(\"jquery.mobile/#{filename}\")"
-}
-
-File.open("#{vendor_css}jquery.mobile.scss", 'w') do |f|
-  f.write body
-end
-
-cp_img "#{vendor_img}jquery.mobile", "#{vendor_tmp}jquery.mobile/#{version}/themes/base/images"
-
-FileUtils.rm "#{vendor_tmp}jquery.mobile.zip"
-FileUtils.remove_dir "#{vendor_tmp}jquery.mobile"
-
-# jquery timeago
-get "#{vendor_js}jquery.timeago.coffee", 'https://rawgithub.com/pragmaticly/smart-time-ago/master/src/timeago.coffee'
-
 # jquery cookie
 get "#{vendor_js}jquery.cookie.js", 'https://rawgithub.com/carhartl/jquery-cookie/master/jquery.cookie.js'
 
@@ -117,29 +70,6 @@ get "#{vendor_js}jquery.iframe-transport.js", "https://rawgithub.com/blueimp/jQu
 version = '1.2.0'
 get "#{vendor_js}jquery.pnotify.js", "https://rawgithub.com/sciactive/pnotify/#{version}/jquery.pnotify.min.js"
 get "#{vendor_css}jquery.pnotify.css", "https://rawgithub.com/sciactive/pnotify/#{version}/jquery.pnotify.default.css"
-
-# jquery fancybox
-version = '2.1.5'
-get_zip "#{vendor_tmp}jquery.fancybox", "https://github.com/fancyapps/fancyBox/zipball/v#{version}"
-
-dir = Dir["#{vendor_tmp}jquery.fancybox/*/source"][0]
-
-FileUtils.cp "#{dir}/jquery.fancybox.pack.js", "#{vendor_js}jquery.fancybox.js"
-FileUtils.cp "#{dir}/jquery.fancybox.css", "#{vendor_css}jquery.fancybox.scss"
-
-body = File.read("#{vendor_css}jquery.fancybox.scss").gsub(/url\([^\)]+\)/){ |s|
-  filename = s.gsub('url(\'', '').gsub('\')', '')
-  "image-url(\"jquery.fancybox/#{filename}\")"
-}
-
-File.open("#{vendor_css}jquery.fancybox.scss", 'w') do |f|
-  f.write body
-end
-
-cp_img "#{vendor_img}jquery.fancybox", dir
-
-FileUtils.rm "#{vendor_tmp}jquery.fancybox.zip"
-FileUtils.remove_dir "#{vendor_tmp}jquery.fancybox"
 
 # jquery lazyload
 get "#{vendor_js}jquery.lazyload.js", 'https://rawgithub.com/tuupola/jquery_lazyload/master/jquery.lazyload.min.js'
@@ -186,14 +116,8 @@ cp_img "#{vendor_img}bootstrap3", "#{vendor_tmp}bootstrap3/bootstrap-#{version}-
 FileUtils.rm "#{vendor_tmp}bootstrap3.zip"
 FileUtils.remove_dir "#{vendor_tmp}bootstrap3"
 
-# underscore
-get "#{vendor_js}underscore.js", 'http://underscorejs.org/underscore-min.js'
-
 # sammy
 get "#{vendor_js}sammy.js", 'https://rawgithub.com/quirkey/sammy/master/lib/min/sammy-latest.min.js'
-
-# modernizr
-get "#{vendor_js}modernizr.js", 'http://modernizr.com/downloads/modernizr-latest.js'
 
 # lazyload
 version = '2.0.3'
@@ -208,19 +132,6 @@ FileUtils.rm Dir.glob("#{vendor_js}zepto/*")
 %w(assets data selector touch gesture stack).each do |name|
   get "#{vendor_js}zepto/#{name}.js", "https://rawgithub.com/madrobby/zepto/v#{version}/src/#{name}.js"
 end
-
-# highcharts
-get "#{vendor_js}highcharts.js", 'http://code.highcharts.com/highcharts.js'
-
-# backbone
-get "#{vendor_js}backbone.js", 'http://backbonejs.org/backbone-min.js'
-
-# jquery.turbolinks
-get "#{vendor_js}jquery.turbolinks.coffee", 'https://rawgithub.com/kossnocorp/jquery.turbolinks/master/src/jquery.turbolinks.coffee'
-
-# AngularJS
-version = '1.2.13'
-get "#{vendor_js}angular.js", "https://ajax.googleapis.com/ajax/libs/angularjs/#{version}/angular.min.js"
 
 # jQuery-ujs
 get "#{vendor_js}jquery.ujs.js", 'https://raw.github.com/indirect/jquery-rails/master/vendor/assets/javascripts/jquery_ujs.js'
