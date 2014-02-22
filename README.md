@@ -69,14 +69,14 @@ Or install it yourself as:
 
 ## Other Useful Gems
 
-* Backbone & Underscore https://github.com/codebrew/backbone-rails
+Backbone & Underscore https://github.com/codebrew/backbone-rails
 
     gem 'rails-backbone'
 
     #= require underscore
     #= require backbone
 
-* Turbolinks https://github.com/rails/turbolinks & jquery.turbolinks https://github.com/kossnocorp/jquery.turbolinks
+Turbolinks https://github.com/rails/turbolinks & jquery.turbolinks https://github.com/kossnocorp/jquery.turbolinks
 
     gem 'turbolinks'
     gem 'jquery-turbolinks'
@@ -84,7 +84,7 @@ Or install it yourself as:
     #= require jquery.turbolinks
     #= require turbolinks
 
-* jQuery UI https://github.com/joliss/jquery-ui-rails
+jQuery UI https://github.com/joliss/jquery-ui-rails
 
     gem 'jquery-ui-rails'
 
@@ -92,7 +92,7 @@ Or install it yourself as:
 
     @import jquery.ui.all
 
-* jQuery Mobile https://github.com/dmarkow/jquery-mobile-rails
+jQuery Mobile https://github.com/dmarkow/jquery-mobile-rails
 
     gem 'jquery_mobile_rails'
 
@@ -100,31 +100,31 @@ Or install it yourself as:
 
     @import jquery.mobile
 
-* jQuery Timeago https://github.com/jgraichen/rails-timeago
+jQuery Timeago https://github.com/jgraichen/rails-timeago
 
     gem 'rails-timeago'
 
     #= require rails-timeago
 
-* Fancybox https://github.com/kyparn/fancybox2-rails
+Fancybox https://github.com/kyparn/fancybox2-rails
 
     gem 'fancybox2-rails'
 
     #= require fancybox
 
-* Modernizr https://github.com/russfrisch/modernizr-rails
+Modernizr https://github.com/russfrisch/modernizr-rails
 
     gem 'modernizr-rails'
 
     #= require modernizr
 
-* AngularJS https://github.com/hiravgandhi/angularjs-rails
+AngularJS https://github.com/hiravgandhi/angularjs-rails
 
     gem 'angularjs-rails'
 
     #= require angular
 
-* Highcharts https://github.com/PerfectlyNormal/highcharts-rails
+Highcharts https://github.com/PerfectlyNormal/highcharts-rails
 
     gem 'highcharts-rails'
 
