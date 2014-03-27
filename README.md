@@ -25,7 +25,6 @@ Or install it yourself as:
     #=require jquery.ujs
     #=require jquery.ui
     #=require jquery.mobile
-    #=require jquery.timeago
     #=require jquery.cookie
     #=require jquery.validate
     #=require jquery.fileupload
