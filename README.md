@@ -39,7 +39,6 @@ Or install it yourself as:
     #=require zepto
     #=require zepto.all
     #=require highcharts
-    #=require semantic
     #=require angular
 
     @import compass
@@ -51,7 +50,6 @@ Or install it yourself as:
     @import bootstrap.responsive
     @import bootstrap3
     @import normalize
-    @import semantic
     @import font-awesome
 
 ## Include Gems
@@ -67,6 +65,14 @@ Or install it yourself as:
 * font-awesome-rails https://github.com/bokmann/font-awesome-rails
 
 ## Other Useful Gems
+
+Semantic UI https://github.com/doabit/semantic-ui-sass
+
+    gem 'semantic-ui-sass'
+    
+    @import "semantic-ui"
+    #= require semantic-ui
+    
 
 Backbone & Underscore https://github.com/codebrew/backbone-rails
 
