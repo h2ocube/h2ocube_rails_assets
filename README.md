@@ -7,6 +7,8 @@ Just an assets collection.
 
 ## Installation
 
+NOTE: The new version just support rails 4.1 or newer.
+
 Add this line to your application's Gemfile:
 
     gem 'h2ocube_rails_assets'
@@ -24,7 +26,6 @@ Or install it yourself as:
     #=require jquery
     #=require jquery.ujs
     #=require jquery.cookie
-    #=require jquery.lazyload
     #=require lazyload
 
     @import compass
