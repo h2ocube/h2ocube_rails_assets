@@ -23,34 +23,12 @@ Or install it yourself as:
 
     #=require jquery
     #=require jquery.ujs
-    #=require jquery.ui
-    #=require jquery.mobile
     #=require jquery.cookie
-    #=require jquery.validate
-    #=require jquery.fileupload
-    #=require jquery.pnotify
-    #=require jquery.fancybox
     #=require jquery.lazyload
-    #=require bootstrap
-    #=require bootstrap3
-    #=require sammy
-    #=require modernizr
     #=require lazyload
-    #=require zepto
-    #=require zepto.all
-    #=require highcharts
-    #=require angular
 
     @import compass
-    @import jquery.ui
-    @import jquery.mobile
-    @import jquery.pnotify
-    @import jquery.fancybox
-    @import bootstrap
-    @import bootstrap.responsive
-    @import bootstrap3
     @import normalize
-    @import font-awesome
 
 ## Include Gems
 
@@ -61,10 +39,22 @@ Or install it yourself as:
 * therubyracer https://github.com/cowboyd/therubyracer
 * uglifier https://github.com/lautis/uglifier
 * quiet_assets https://github.com/evrone/quiet_assets
-* turbolinks https://github.com/rails/turbolinks
-* font-awesome-rails https://github.com/bokmann/font-awesome-rails
 
 ## Other Useful Gems
+
+Font::Awesome::Sass https://github.com/FortAwesome/font-awesome-sass
+
+    gem 'font-awesome-sass'
+
+    @import 'font-awesome'
+
+bootstrap-sass https://github.com/twbs/bootstrap-sass
+
+    gem 'bootstrap-sass'
+
+    @import "bootstrap-sprockets"
+    @import "bootstrap"
+    #= require bootstrap-sprockets
 
 Semantic UI https://github.com/doabit/semantic-ui-sass
 
