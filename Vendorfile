@@ -30,8 +30,8 @@ def cp_img to, from, clear = true
 end
 
 # jquery
-get "#{vendor_js}jquery/1.0.js", 'http://code.jquery.com/jquery-1.11.1.min.js'
-get "#{vendor_js}jquery/2.0.js", 'http://code.jquery.com/jquery-2.1.1.min.js'
+get "#{vendor_js}jquery/1.0.js", 'https://code.jquery.com/jquery-1.11.2.min.js'
+get "#{vendor_js}jquery/2.0.js", 'https://code.jquery.com/jquery-2.1.3.min.js'
 
 # jquery cookie
 get "#{vendor_js}jquery.cookie.js", 'https://rawgithub.com/carhartl/jquery-cookie/master/jquery.cookie.js'
