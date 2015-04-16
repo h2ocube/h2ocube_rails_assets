@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = 'h2ocube_rails_assets'
-  gem.version       = '0.2.2'
+  gem.version       = '0.3.0'
   gem.authors       = ['Ben']
   gem.email         = ['ben@h2ocube.com']
   gem.description   = %q{Just an assets collection}
@@ -19,7 +19,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'rails', '> 4.1'
   gem.add_dependency 'sass-rails'
-  %w(slim compass-rails coffee-rails therubyracer uglifier quiet_assets).each{ |g| gem.add_dependency g }
+  %w(slim coffee-rails therubyracer uglifier quiet_assets).each{ |g| gem.add_dependency g }
 
   %w(minitest capybara rubyzip vendorer).each{ |g| gem.add_development_dependency g }
 end

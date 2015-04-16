@@ -35,7 +35,6 @@ Or install it yourself as:
 
 * slim http://slim-lang.com/
 * sass-rails https://github.com/rails/sass-rails
-* compass-rails https://github.com/Compass/compass-rails
 * coffee-rails https://github.com/rails/coffee-rails
 * therubyracer https://github.com/cowboyd/therubyracer
 * uglifier https://github.com/lautis/uglifier
@@ -60,10 +59,10 @@ bootstrap-sass https://github.com/twbs/bootstrap-sass
 Semantic UI https://github.com/doabit/semantic-ui-sass
 
     gem 'semantic-ui-sass'
-    
+
     @import "semantic-ui"
     #= require semantic-ui
-    
+
 
 Backbone & Underscore https://github.com/codebrew/backbone-rails
 
