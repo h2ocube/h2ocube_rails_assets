@@ -7,7 +7,7 @@ Just an assets collection.
 
 ## Installation
 
-NOTE: The new version just support rails 4.1 or newer.
+NOTE: The new version just support rails 4.2 or newer.
 
 Add this line to your application's Gemfile:
 
@@ -24,12 +24,8 @@ Or install it yourself as:
 ## Usage
 
     #=require jquery
-    #=require jquery.ujs
-    #=require jquery.cookie
-    #=require lazyload
-
-    @import compass
-    @import normalize
+    #=require jquery2
+    #=require jquery_ujs
 
 ## Include Gems
 
@@ -39,6 +35,7 @@ Or install it yourself as:
 * therubyracer https://github.com/cowboyd/therubyracer
 * uglifier https://github.com/lautis/uglifier
 * quiet_assets https://github.com/evrone/quiet_assets
+* jquery-rails https://github.com/rails/jquery-rails
 
 ## Other Useful Gems
 
