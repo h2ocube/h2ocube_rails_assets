@@ -21,15 +21,9 @@ Or install it yourself as:
 
     $ gem install h2ocube_rails_assets
 
-## Usage
-
-    #=require jquery
-    #=require jquery2
-    #=require jquery_ujs
-
 ## Include Gems
 
-* slim http://slim-lang.com/
+* slim-rails https://github.com/slim-template/slim-rails
 * sass-rails https://github.com/rails/sass-rails
 * coffee-rails https://github.com/rails/coffee-rails
 * therubyracer https://github.com/cowboyd/therubyracer
