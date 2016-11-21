@@ -1,5 +1,5 @@
 if defined?(Rails)
-  %w(slim-rails sass-rails coffee-rails uglifier quiet_assets jquery-rails).each{ |g| require g }
+  %w(slim-rails sass-rails coffee-rails uglifier turbolinks jquery-rails babel-transpiler).each{ |g| require g }
 
   module H2ocubeRailsAssets
     class Railtie < Rails::Railtie

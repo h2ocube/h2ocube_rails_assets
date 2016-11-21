@@ -26,9 +26,10 @@ Or install it yourself as:
 * slim-rails https://github.com/slim-template/slim-rails
 * sass-rails https://github.com/rails/sass-rails
 * coffee-rails https://github.com/rails/coffee-rails
+* babel-transpiler https://github.com/babel/ruby-babel-transpiler
 * therubyracer https://github.com/cowboyd/therubyracer
+* turbolinks https://github.com/turbolinks/turbolinks
 * uglifier https://github.com/lautis/uglifier
-* quiet_assets https://github.com/evrone/quiet_assets
 * jquery-rails https://github.com/rails/jquery-rails
 
 ## Other Useful Gems
