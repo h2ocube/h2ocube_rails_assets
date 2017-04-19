@@ -25,6 +25,9 @@ if defined?(Rails)
       PATH = File.dirname(__FILE__)
       initializer 'h2ocube_rails_assets.require_dependency' do |app|
         app.config.assets.paths += Dir[File.join(PATH, '../vendor/assets/*')]
+        ActiveSupport.on_load :action_view do
+          include H2ocubeRailsAssets::ActionView::Helpers
+        end
       end
     end
   end
