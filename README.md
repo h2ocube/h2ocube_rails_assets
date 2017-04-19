@@ -33,7 +33,15 @@ Or install it yourself as:
 
 ## Include helper
 
-`assets_source(type)` type is `:css` or `:js`
+### assets_source(type)
+
+type is `:css` or `:js`
+
+Example:
+
+```ruby
+assets_source :css # when subdomain is 'www', controller is 'pages', action is 'home', it will try to find 'assets/stylesheets/domains/www/pages.sass' and 'assets/stylesheets/domains/www/pages/home.sass', if file exists, will use `stylesheet_link_tag` to include them.
+```
 
 ## Other Useful Gems
 
