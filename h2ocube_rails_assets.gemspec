@@ -11,12 +11,12 @@ Gem::Specification.new do |gem|
   gem.summary       = 'Just an assets collection'
   gem.homepage      = 'https://github.com/h2ocube/h2ocube_rails_assets'
   gem.license       = 'MIT'
-  gem.required_ruby_version = '~> 2.3'
+  gem.required_ruby_version = '~> 2.4'
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ['lib']
 
-  %w(sass-rails slim-rails coffee-rails uglifier turbolinks jquery-rails babel-transpiler).each{ |g| gem.add_dependency g }
+  %w(sass-rails slim-rails coffee-rails uglifier turbolinks jquery-rails).each{ |g| gem.add_dependency g }
 end
